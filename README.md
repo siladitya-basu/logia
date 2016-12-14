@@ -10,4 +10,4 @@ Get Python and the numpy library. I use [Anaconda](https://www.continuum.io/down
 
 Next, download [Coq](https://coq.inria.fr/download), a proof assistant for the Calculus of (Inductive) Constructions designed by Thiery Coquand, which is an extension of the [Curry-Howard isomorphism](https://en.wikipedia.org/wiki/Curry–Howard_correspondence).
 
-Clone the repository and add the pathnames in *version_logia.py* accordingly, and you're all set!
+Clone the repository and replace the ellipses with proper pathnames in *version_logia.py* accordingly, and you're all set!
