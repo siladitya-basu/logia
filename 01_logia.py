@@ -36,9 +36,8 @@ while qed == False :
     Proof = open('.../logia/Proof', 'w')
     Proof.write(theorem + '\n' + proofgen())
     Proof.close()
-    system('coqc -compile .../logia/Proof')
-    compiled = open('.../logia/Proof.vo', 'r')
-    qed = isinstance(compiled, file)                  # check with coqc to see if Proof.v compiles, set qed = True
+    system('coqtop -compile .../logia/Proof')
+    qed = system('test -e .../logia/Proof.vo')                  
     
 
 # ---EOF---
