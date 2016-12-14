@@ -16,8 +16,8 @@ from os import system
 
 
 qed        = False
-theorem    = open('/home/wrick/Documents/logia/theorem', 'r').readline()
-tactics    = open('/home/wrick/Documents/logia/tactics_base', 'r').read().split('\n')
+theorem    = open('.../logia/theorem', 'r').readline()
+tactics    = open('.../logia/tactics_base', 'r').read().split('\n')
 T          = len(tactics)
 population = 10            # constant population size for every generation
 maxlength  = 5             # maximum proof length
@@ -94,17 +94,12 @@ generation = seedgen()
 while qed == False :
     
     for i in population and qed == False :
-        Proof = open('/home/wrick/Documents/logia/Proof', 'w')
+        Proof = open('.../logia/Proof', 'w')
         Proof.write(theorem + '\n' + proofgen(generation[i]))
         Proof.close()
-        system('coqc -compile /home/wrick/Documents/logia/Proof')
-        compiled = open('/home/wrick/Documents/logia/Proof.vo', 'r')
-        qed = isinstance(compiled, file)
+        system('coqtop -compile .../logia/Proof')
+        qed = system('test -e .../logia/Proof.vo')
 
     generation = generationmap(generation)
-
-compiled.close()
-system('coqtop /home/wrick/Documents/logia/Proof')
-
-
+ 
 # ---EOF---
