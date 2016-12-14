@@ -15,8 +15,8 @@ from os import system
 
 
 qed     = False
-theorem = open('/home/wrick/Documents/logia/theorem', 'r').readline()
-tactics = open('/home/wrick/Documents/logia/tactics_base', 'r').read().split('\n')
+theorem = open( '.../logia/theorem', 'r').readline()
+tactics = open('.../logia/tactics_base', 'r').read().split('\n')
 T       = len(tactics)                                # size of the tactics base
 
 
@@ -33,11 +33,11 @@ def proofgen() :
 
 
 while qed == False :
-    Proof = open('/home/wrick/Documents/logia/Proof', 'w')
+    Proof = open('.../logia/Proof', 'w')
     Proof.write(theorem + '\n' + proofgen())
     Proof.close()
-    system('coqc -compile /home/wrick/Documents/logia/Proof')
-    compiled = open('/home/wrick/Documents/logia/Proof.vo', 'r')
+    system('coqc -compile .../logia/Proof')
+    compiled = open('.../logia/Proof.vo', 'r')
     qed = isinstance(compiled, file)                  # check with coqc to see if Proof.v compiles, set qed = True
     
 
