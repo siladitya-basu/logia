@@ -18,14 +18,13 @@ from os import system
 qed        = False
 theorem    = open('.../logia/theorem', 'r').readline()
 tactics    = open('.../logia/tactics_base', 'r').read().split('\n')
-T          = len(tactics)
+T          = len(tactics) - 1    # the last tactic is a null tactic
 population = 10            # constant population size for every generation
 maxlength  = 5             # maximum proof length
 
 
-# create the seeds -- the first organisms/proofs
-def seedgen() :
-    generation = []
+# create the seeds -- adds new proofs to the generation
+def seedgen(generation) :
 
     for i in range(population) :
         length = randint(1, maxlength)
@@ -68,11 +67,11 @@ def mutagen(proof) :
 def generationmap(generation) :
     newgeneration = []
     
-    for i in population :
+    for i in range(population) :
         generation[i] = mutagen(generation[i])
 
-    for i in population :
-        proof_tuple = (randint(population), randint(population))
+    for i in range(population) :
+        proof_tuple = (generation[randint(population)], generation[randint(population)])
         newproof = crossover(proof_tuple)
         newgeneration.append(newproof)
 
@@ -89,13 +88,13 @@ def proofgen(sequence) :
 
 
 # the program
-generation = seedgen()
+generation = seedgen([])
 
 while qed == False :
     
     for i in population and qed == False :
-        Proof = open('.../logia/Proof', 'w')
-        Proof.write(theorem + '\n' + proofgen(generation[i]))
+        Proof = open('.../logia/Proof.v', 'w')
+        Proof.write(theorem + proofgen(generation[i]))
         Proof.close()
         system('coqtop -compile .../logia/Proof')
         qed = system('test -e .../logia/Proof.vo')
