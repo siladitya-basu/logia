@@ -28,12 +28,12 @@ def proofgen() :
     for i in keys :
         proof += ' ' + tactics[i] + '.'
 
-    proof += ' QED.\n'
+    proof += ' Defined.\n'
     return(proof)
 
 
 while qed == False :
-    Proof = open('.../logia/Proof', 'w')
+    Proof = open('.../logia/Proof.v', 'w')
     Proof.write(theorem + '\n' + proofgen())
     Proof.close()
     system('coqtop -compile .../logia/Proof')
