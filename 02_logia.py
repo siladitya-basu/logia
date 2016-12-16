@@ -83,7 +83,7 @@ def proofgen(sequence) :
     proof = 'Proof.'
     for i in sequence :
         proof += ' ' + tactics[i] + '.'
-    proof += ' QED.\n'
+    proof += ' Defined.\n'
     return(proof)
 
 
@@ -92,12 +92,13 @@ generation = seedgen([])
 
 while qed == False :
     
-    for i in population and qed == False :
-        Proof = open('.../logia/Proof.v', 'w')
-        Proof.write(theorem + proofgen(generation[i]))
-        Proof.close()
-        system('coqtop -compile .../logia/Proof')
-        qed = system('test -e .../logia/Proof.vo')
+    for i in range(population) :
+        if qed == False :
+            Proof = open('.../logia/Proof.v', 'w')
+            Proof.write(theorem + proofgen(generation[i]))
+            Proof.close()
+            system('coqtop -compile .../logia/Proof')
+            qed = system('test -e .../logia/Proof.vo')
 
     generation = generationmap(generation)
  
