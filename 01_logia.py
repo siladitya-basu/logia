@@ -17,7 +17,7 @@ from os import system
 qed     = False
 theorem = open( '.../logia/theorem', 'r').readline()
 tactics = open('.../logia/tactics_base', 'r').read().split('\n')
-T       = len(tactics)                                # size of the tactics base
+T       = len(tactics) - 1                            # size of the tactics base
 
 
 def proofgen() :
