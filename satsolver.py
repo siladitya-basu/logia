@@ -1,6 +1,7 @@
 # single formula SAT solver for LOGIA
 # to avoid the halting problem on unsatisfiable propositions
 
+
 # define propositional operators
 
 def neg(x):
@@ -16,15 +17,23 @@ def imp(x, y):
   return not x or y
 
 def iff(x, y):
-  return (x and y) or (not x and not y)
+  return x is y
+
 
 # this stores a string as a formula and returns a truth value
 def sat_main():
   wff = input()   # wff = raw_input() on Python 2.x, stores the formula
+  sat = False
+  
+  # variables in wff; to be replaced by a variable list and proper iteration
+  x = True
+  y = True
+  
   return eval(wff)
+
 
 sat_main()
 
 # TO DO:
 # Create a 'var' list that stores the variables used in wff
-# Iterate the variables through {False, True} to get at least one instance when wff is 'True'
+# Iterate the variables through {False, True} to get at least one instance when wff is True
