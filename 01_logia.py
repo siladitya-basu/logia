@@ -32,12 +32,14 @@ def proofgen() :
     return(proof)
 
 
-while qed == False :
-    Proof = open('.../logia/Proof.v', 'w')
-    Proof.write(theorem + '\n' + proofgen())
-    Proof.close()
-    system('coqtop -compile .../logia/Proof')
-    qed = system('test -e .../logia/Proof.vo')                  
+def logia_main():
+    while qed == False :
+        Proof = open('.../logia/Proof.v', 'w')
+        Proof.write(theorem + '\n' + proofgen())
+        Proof.close()
+        system('coqtop -compile .../logia/Proof')
+        qed = system('test -e .../logia/Proof.vo')                  
     
+logia_main()
 
 # ---EOF---
