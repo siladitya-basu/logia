@@ -5,7 +5,7 @@ Logia is my attempt to create an automated theorem prover by combining the widel
 
 ## Getting Started
 
-Get Python and the `numpy` library. I use [Anaconda](https://www.continuum.io/downloads) by Continuum Mechanics.
+Get Python 3 and the `numpy` library. I use [Anaconda](https://www.continuum.io/downloads) by Continuum Mechanics.
 
 Next, download [Coq](https://coq.inria.fr/download), a proof assistant for the Calculus of (Inductive) Constructions designed by Thiery Coquand.
 
