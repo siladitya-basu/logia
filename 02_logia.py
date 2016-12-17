@@ -87,19 +87,22 @@ def proofgen(sequence) :
     return(proof)
 
 
-# the program
-generation = seedgen([])
-
-while qed == False :
+# the main program
+def logia_main():
+    generation = seedgen([])
     
-    for i in range(population) :
-        if qed == False :
-            Proof = open('.../logia/Proof.v', 'w')
-            Proof.write(theorem + proofgen(generation[i]))
-            Proof.close()
-            system('coqtop -compile .../logia/Proof')
-            qed = system('test -e .../logia/Proof.vo')
+    while qed == False :
+        
+        for i in range(population) :
+            if qed == False :
+                Proof = open('.../logia/Proof.v', 'w')
+                Proof.write(theorem + proofgen(generation[i]))
+                Proof.close()
+                system('coqtop -compile .../logia/Proof')
+                qed = system('test -e .../logia/Proof.vo')
+    
+        generation = generationmap(generation)
 
-    generation = generationmap(generation)
- 
+logia_main()
+
 # ---EOF---
