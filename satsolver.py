@@ -25,5 +25,6 @@ def sat_main():
 
 sat_main()
 
+# TO DO:
 # Create a 'var' list that stores the variables used in wff
 # Iterate the variables through {False, True} to get at least one instance when wff is 'True'
