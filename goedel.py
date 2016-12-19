@@ -1,6 +1,6 @@
 # goedel encoder/decoder for LOGIA
 # converts the theorem into its goedel numbering and vice versa
-# requires proper formatting -- this guy splits by whitespaces
+# requires proper formatting -- splitting is done by whitespaces
 
 
 # naive prime generator
@@ -13,8 +13,8 @@ def nextprime(num):
         return(num)
         
 
-# Goedel Numbering indices
-# identifier    ---    number
+# Goedel Numbering:
+# identifier    ---    prime
 # forall               2
 # :Prop                3
 # ,                    5
