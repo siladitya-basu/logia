@@ -8,8 +8,9 @@ def nextprime(num):
     while True:
         num += 1
         for i in range(2, num):
-            if num%i==0:
+            if num % i == 0:
                 num += 1
+                continue
         return(num)
         
 
