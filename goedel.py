@@ -2,12 +2,13 @@
 # converts the theorem into its goedel numbering and vice versa
 # requires proper formatting -- splitting is done by whitespaces
 
+from math import sqrt
 
 # naive prime generator
 def nextprime(num):
     while True:
         num += 1
-        for i in range(2, num):
+        for i in range(2, sqrt(num) + 1):
             if num % i == 0:
                 num += 1
                 continue
