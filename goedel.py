@@ -16,51 +16,55 @@ def nextprime(num):
         
 
 # Goedel Numbering:
-# identifier    ---    prime
-# forall               2
+# Identifier    ---    Goedel number
+# forall               1
+# exists               2
 # :Prop                3
-# ,                    5
-# ~                    7
-# ->                   11
-# &                    13
-# |                    17
-# <->                  19
-# variables            23 onwards
+# ~                    4
+# ->                   5
+# &                    6
+# |                    7
+# <->                  8
+# .                    9
+# variables            10 onwards
 
 
 def goedel_encoder(theorem_file_object):
-    theorem = theorem_file_object.readline().split(' ')
+    theorem = theorem_file_object.readline().split(',')    # splits the theorem into the 'variables' part and the 'statement' part
+    statement = theorem[1]
+    vardict = dict
     length = len(theorem)
 
     goedel_num = 1
-    var_prime = 23
+    prime = 2
+    var_num = 10
 
     for i in range(length):
         ident = theorem[i]
         if ident == 'forall':
-            goedel_num *= 2**i
+            goedel_num *= prime**1
+        elif ident == 'exists':
+            goedel_num *= prime**2
         elif ident == ':Prop':
-            goedel_num *= 3**i
-        elif ident == ',':
-            goedel_num *= 5**i
+            goedel_num *= prime**3
         elif ident == '~':
-            goedel_num *= 7**i
+            goedel_num *= prime**4
         elif ident == '->':
-            goedel_num *= 11**i
+            goedel_num *= prime**5
         elif ident == '&':
-            goedel_num *= 13**i
+            goedel_num *= prime**6
         elif ident == '|':
-            goedel_num *= 17**i
+            goedel_num *= prime**7
         elif ident == '<->':
-            goedel_num *= 19**i
+            goedel_num *= prime**8
         elif ident.isalpha():
-            goedel_num *= var_prime**i
-            var_prime = nextprime(var_prime)
+            goedel_num *= prime**var_num
+            var_num += 1
         else:
-            goedel_num *= 1
+            goedel_num *= 1    
         
+        prime = nextprime(prime)
     return(goedel_num)
-# encoder fails for incorrectly formatted propositions!
     
     
 def goedel_decoder(number):
