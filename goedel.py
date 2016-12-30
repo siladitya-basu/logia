@@ -63,7 +63,7 @@ def goedel_decoder(num):
 
         prime = nextprime(prime)         # get the next prime/position marker
 
-        for pair in sym:                 # add the symbol
+        for pair in sym_list:                 # add the symbol
             (sym, num) = pair
             if num == count:
                 thm += sym + ' '
