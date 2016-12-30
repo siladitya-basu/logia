@@ -31,7 +31,7 @@ def nextprime(num):
 def goedel_encoder(thm):
     temp = thm.split(',')[0].split(' ')    # get the quatifier part out
     for ch in temp:
-        if len(ch)<=2 and str.isalpha(ch):
+        if len(ch)<=2 and ch.isalpha():
             var_count += 1                 # count number of variables
             var_list.append(ch)            # add variable to the list
             var_num.append(sym_dict['.'] + var_count)    # add variable's goedel numbering
@@ -42,13 +42,14 @@ def goedel_encoder(thm):
     prime = 3
     for part in temp:
         for symbol in part.split(' '):
-            symbol = str.strip(symbol)
+            symbol = symbol.strip()
+            symbol = symbol.replace(',', '')
             goedel_num *= prime**sym_dict[symbol]
             prime = nextprime(prime)
     return goedel_num
 
 
-# converts an odd number to a theorem
+# converts a valid odd number to a theorem
 
 def goedel_decoder(num):
     sym_list = list(sym_dict.items())    # create an array of (symbol, number) pairs
@@ -68,7 +69,7 @@ def goedel_decoder(num):
             if num == count:
                 thm += sym + ' '
         
-    thm = str.strip(thm)
+    thm = thm.strip()
     thm += '.'
     return thm
 
@@ -77,7 +78,7 @@ def goedel_decoder(num):
 
 def goedel_main():
     thm_obj = open('.../logia/object', 'r').readline()
-    if str.isdigit(thm_obj):
+    if thm_obj.isdigit():
         val = goedel_decoder(thm_obj)
     else:
         val = goedel_encoder(thm_obj)
