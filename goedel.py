@@ -1,5 +1,6 @@
 # goedel decoder/encoder for LOGIA
-
+# converts a formula to its goedel numbering
+# converts a valid goedel number to a formula 
 
 from math import sqrt
 
@@ -15,21 +16,26 @@ var_list = []
 # naive prime generator
 
 def nextprime(num):
-    while True:
-        num += 2 
-        for i in range(3, sqrt(num) + 1):
+    foundprime = False
+    
+    while not foundprime:
+        num += 2
+        
+        for i in range(3, int(sqrt(num) + 1), 2):
             if num%i == 0:
-                num += 2
-                continue
-        return num
+                foundprime = False
+                break
+            foundprime = True
+
+    return num
 
 
 # converts a theorem to its goedel numbering
 # format -- Theorem name : forall x1 x2 ... xn : Prop, statement.
 # variables are at most 2 characters long, everything else must be at least 3 chars
 
-def goedel_encoder(thm):
-    temp = thm.split(',')[0].split(' ')    # get the quatifier part out
+def goedel_encoder(wff):
+    temp = wff.split(',')[0].split(' ')    # get the quatifier part out
     for ch in temp:
         if len(ch)<=2 and ch.isalpha():
             var_count += 1                 # count number of variables
@@ -38,7 +44,7 @@ def goedel_encoder(thm):
     sym_dict.update(dict(zip(var_list, var_num)))        # update symbol dictionary with the variables
 
     goedel_num = 1
-    temp = thm.split(':')[1:]
+    temp = wff.split(':')[1:]
     prime = 3
     for part in temp:
         for symbol in part.split(' '):
@@ -54,7 +60,7 @@ def goedel_encoder(thm):
 def goedel_decoder(num):
     sym_list = list(sym_dict.items())    # create an array of (symbol, number) pairs
     prime = 3                            # primes mark the positions and starts with 3
-    thm = ''
+    wff = ''
 
     while num > 1:
         count = 0
@@ -67,21 +73,21 @@ def goedel_decoder(num):
         for pair in sym_list:                 # add the symbol
             (sym, num) = pair
             if num == count:
-                thm += sym + ' '
+                wff += sym + ' '
         
-    thm = thm.strip()
-    thm += '.'
-    return thm
+    wff = wff.strip()
+    wff += '.'
+    return wff
 
 
 # main function -- calls the encoder/decoder according to the thm_obj type in 'object' file
 
 def goedel_main():
-    thm_obj = open('.../logia/object', 'r').readline()
-    if thm_obj.isdigit():
-        val = goedel_decoder(thm_obj)
+    obj = open('.../logia/object', 'r').readline()
+    if obj.isdigit():
+        val = goedel_decoder(obj)
     else:
-        val = goedel_encoder(thm_obj)
+        val = goedel_encoder(obj)
     return val
 
 goedel_main()
