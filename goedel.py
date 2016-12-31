@@ -6,11 +6,10 @@ from math import sqrt
 
 # goedel numbering dictionary; keep '.' as the last key because the variable numberings start from there
 
-sym_dict = {'forall' : 1, 'exists' : 2, '=' : 3, '~': 4, '->': 5, '&': 6, '/\\': 6, 'and' : 6, '|' : 7, '\\/' : 7, 'or' : 7, '<->' : 8, 'iff' : 8,  '.': 9, ')' : 10, '(' : 11, 'Prop' : 12, 'nat' : 13, '.' : 14}
+sym_dict = {'forall' : 1, 'exists' : 2, '=' : 3, '~': 4, '->': 5, '&': 6, '/\\': 6, '|' : 7, '\\/' : 7, '<->' : 8, ')' : 9, '(' : 10, 'Prop' : 11, 'nat' : 12, '.' : 13}
 
-var_count = 0
 var_num = []
-var_list = []
+var_set = {}
 
 
 # naive prime generator
@@ -31,27 +30,34 @@ def nextprime(num):
 
 
 # converts a theorem to its goedel numbering
-# format -- Theorem name : forall x1 x2 ... xn : Prop, statement.
+# format -- Theorem name : forall x1 x2 ... xn : nat, exists p q : Prop, statement.
 # variables are at most 2 characters long, everything else must be at least 3 chars
 
 def goedel_encoder(wff):
-    temp = wff.split(',')[0].split(' ')    # get the quatifier part out
-    for ch in temp:
-        if len(ch)<=2 and ch.isalpha():
-            var_count += 1                 # count number of variables
-            var_list.append(ch)            # add variable to the list
-            var_num.append(sym_dict['.'] + var_count)    # add variable's goedel numbering
-    sym_dict.update(dict(zip(var_list, var_num)))        # update symbol dictionary with the variables
+    thm = thm.split(',')[0].split(':')
+
+    for part in thm:
+        for word in part.split(' '):
+            word = word.strip()
+            if len(word) < 3 and word.isalpha():
+                c = len(var_set)
+                var_set = var_set.add(word)
+                if len(var_set) > c:
+                    var_num = var_num.append(len(sym_dict) + len(var_num) + 1)
+
+    sym_dict.update(dict(zip(var_set, var_num)))        # update symbol dictionary with the variables
 
     goedel_num = 1
     temp = wff.split(':')[1:]
     prime = 3
+    
     for part in temp:
         for symbol in part.split(' '):
-            symbol = symbol.strip()
             symbol = symbol.replace(',', '')
+            symbol = symbol.strip()
             goedel_num *= prime**sym_dict[symbol]
             prime = nextprime(prime)
+    
     return goedel_num
 
 
@@ -94,5 +100,4 @@ goedel_main()
 
 
 # TO DO:
-# include support for polymorphic functions and dependent pair types
-# syn with satsolver
+# sync with satsolver
