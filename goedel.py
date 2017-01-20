@@ -26,7 +26,7 @@ def nextprime(num):
                 break
             foundprime = True
 
-    return num
+    return(num)
 
 
 # converts a theorem to its goedel numbering
@@ -58,7 +58,7 @@ def goedel_encoder(wff):
             goedel_num *= prime**sym_dict[symbol]
             prime = nextprime(prime)
     
-    return goedel_num
+    return(goedel_num)
 
 
 # converts a valid odd number to a theorem
@@ -83,7 +83,7 @@ def goedel_decoder(num):
         
     wff = wff.strip()
     wff += '.'
-    return wff
+    return(wff)
 
 
 # main function -- calls the encoder/decoder according to the thm_obj type in 'object' file
@@ -94,7 +94,7 @@ def goedel_main():
         val = goedel_decoder(obj)
     else:
         val = goedel_encoder(obj)
-    return val
+    return(val)
 
 goedel_main()
 
