@@ -1,84 +1,59 @@
 # goedel decoder/encoder for LOGIA
-# converts a formula to its goedel numbering
+# converts a formula to its goedel number
 # converts a valid goedel number to a formula 
 
-from math import sqrt
 
-# goedel numbering dictionary; keep '.' as the last key because the variable numberings start from there
+# goedel numbering dictionary
+# default symbols are those of sympy's; Coq's are secondary; no sympy analog for Coq's '<->', 'forall' and 'exists' logical symbols
 
-sym_dict = {'forall' : 1, 'exists' : 2, '=' : 3, '~': 4, '->': 5, '&': 6, '/\\': 6, '|' : 7, '\\/' : 7, '<->' : 8, ')' : 9, '(' : 10, 'Prop' : 11, 'nat' : 12, '.' : 13}
+sym_dict = {'forall' : 1, 'exists' : 2, '=' : 3, '~': 4, '>>': 5, '->' : 5, '&': 6, '/\\' : 6, '|' : 7, '\\/' : 7, '<->' : 8, ')' : 9, '(' : 10, 'Prop' : 11, 'nat' : 12}
 
 var_num = []
-var_set = {}
+var_list = []
 
 
-# naive prime generator
+# converts a formula to its goedel number
+# format -- Definition name : forall x1 x2 ... xn : nat, exists p q : Prop, expression.
+# symbols must be separated by spaces
+# propositional variables are 21, 211, 2111, ... natural number variables are 31, 311, 3111, ...
 
-def nextprime(num):
-    foundprime = False
+def goedel_encoder(wff):
+    prenex = wff.split(',')[:-1].split(':')[1:].strip().split(' ')    # ['forall', 'x1', 'x2', ..., 'xn', 'nat', 'exists', 'p', 'q', 'Prop']
+    expr = wff.split(',')[-1].strip('.').strip(' ').split[' ']    # ' expression.' is stripped and split
+    num = ''
     
-    while not foundprime:
-        num += 2
-        
-        for i in range(3, int(sqrt(num) + 1), 2):
-            if num%i == 0:
-                foundprime = False
-                break
-            foundprime = True
+    for var in prenex:           # TO DO: loop in reverse to know types beforehand, add more types
+        if var is 'Prop':
+            vnum = '2'
+        elif var is 'nat':
+            vnum = '3'
+        elif var not in sym_dict:
+            var_list.append(var)
+            vnum += '1'
+            var_num.append(vnum)
+
+    sym_dict.update(dict(zip(var_list, var_num)))
+    wff = prenex + expr
+
+    for sym in wff:
+        sym = sym.strip()
+        num += sym_dict[sym] + '0'
 
     return(num)
 
-
-# converts a theorem to its goedel numbering
-# format -- Theorem name : forall x1 x2 ... xn : nat, exists p q : Prop, statement.
-# variables are at most 2 characters long, everything else must be at least 3 chars
-
-def goedel_encoder(wff):
-    thm = thm.split(',')[0].split(':')
-
-    for part in thm:
-        for word in part.split(' '):
-            word = word.strip()
-            if len(word) < 3 and word.isalpha():
-                c = len(var_set)
-                var_set = var_set.add(word)
-                if len(var_set) > c:
-                    var_num = var_num.append(len(sym_dict) + len(var_num) + 1)
-
-    sym_dict.update(dict(zip(var_set, var_num)))        # update symbol dictionary with the variables
-
-    goedel_num = 1
-    temp = wff.split(':')[1:]
-    prime = 3
     
-    for part in temp:
-        for symbol in part.split(' '):
-            symbol = symbol.replace(',', '')
-            symbol = symbol.strip()
-            goedel_num *= prime**sym_dict[symbol]
-            prime = nextprime(prime)
-    
-    return(goedel_num)
 
+# converts a valid number to a theorem
 
-# converts a valid odd number to a theorem
-
-def goedel_decoder(num):
+def goedel_decoder(num):                 # takes in a string number like '1201309'
     sym_list = list(sym_dict.items())    # create an array of (symbol, number) pairs
-    prime = 3                            # primes mark the positions and starts with 3
     wff = ''
-
-    while num > 1:
-        count = 0
-        while num % prime == 0:          # number of times prime divides num = symbol
-            count += 1
-            num /= prime
-
-        prime = nextprime(prime)         # get the next prime/position marker
-
-        for pair in sym_list:                 # add the symbol
+    num = num.split('0')
+    
+    for term in num:
+        for pair in sym_list             # add the symbol
             (sym, num) = pair
-            if num == count:
+            if num == term:
                 wff += sym + ' '
         
     wff = wff.strip()
