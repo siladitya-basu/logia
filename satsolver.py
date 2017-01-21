@@ -1,39 +1,27 @@
-# single formula SAT solver for LOGIA
-# to avoid the halting problem on unsatisfiable propositions
+# SAT Solver for LOGIA
+# takes a proposition and outputs the possible cases of propositional variables for which the proposition evaluates to True
+# this is to avoid the halting problem and find possible paths of proving a proposition
 
 
-# define propositional operators
-
-def neg(x):
-  return not x
-
-def con(x, y):
-  return x and y
-
-def dis(x, y):
-  return x or y
-
-def imp(x, y):
-  return not x or y
-
-def iff(x, y):
-  return x is y
+from sympy import symbols, satisfiable
 
 
-# this stores a string as a formula and returns a truth value
-def sat_main():
-  wff = input()   # wff = raw_input() on Python 2.x, stores the formula
-  sat = False
+def satsolver_main():
+    prop = open('.../logia/prop', 'r').readline()    # of the form -- Proposition name : forall p q r :Prop, expression.
+    expr = prop.split(',')[-1].strip('.')            # expression without leading space or trailing .
+    varnames = split(':')[1].strip()[7:].replace(' ', ',')    # store the names of the variables as a string, split with ', '
+    varlist = list(symbols(varnames))                # create and store the symbols themselves in a list
+
+    try:
+        models = []
+        sat = satisfiable(expr, all_models = True)
+        while True:
+            models.append(next(sat))
+    except StopIteration:
+        pass
+
+    return(models)
+
+  satsolver_main()
   
-  # variables in wff; to be replaced by a variable list and proper iteration
-  x = True
-  y = True
-  
-  return eval(wff)
-
-
-sat_main()
-
-# TO DO:
-# Create a 'var' list that stores the variables used in wff
-# Iterate the variables through {False, True} to get at least one instance when wff is True
+  # TO DO: multiple propositions
