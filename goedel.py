@@ -5,8 +5,7 @@
 
 # goedel numbering dictionary
 # default symbols are those of sympy's; Coq's are secondary; no sympy analog for Coq's '<->', 'forall' and 'exists' logical symbols
-
-sym_dict = {'forall' : 1, 'exists' : 2, '=' : 3, '~': 4, '>>': 5, '->' : 5, '&': 6, '/\\' : 6, '|' : 7, '\\/' : 7, '<->' : 8, ')' : 9, '(' : 10, 'Prop' : 11, 'nat' : 12}
+sym_dict = {'forall' : '1', 'exists' : '2', '=' : '3', '~': '4', '>>': '5', '->' : '5', '&': '6', '/\\' : '6', '|' : '7', '\\/' : '7', '<->' : '8', ')' : '9', '(' : '10', 'Prop' : '11,' 'nat' : '12'}
 
 var_num = []
 var_list = []
@@ -16,7 +15,6 @@ var_list = []
 # format -- Definition name : forall x1 x2 ... xn : nat, exists p q : Prop, expression.
 # symbols must be separated by spaces
 # propositional variables are 21, 211, 2111, ... natural number variables are 31, 311, 3111, ...
-
 def goedel_encoder(wff):
     prenex = wff.split(',')[:-1].split(':')[1:].strip().split(' ')    # ['forall', 'x1', 'x2', ..., 'xn', 'nat', 'exists', 'p', 'q', 'Prop']
     expr = wff.split(',')[-1].strip('.').strip(' ').split[' ']    # ' expression.' is stripped and split
@@ -38,23 +36,33 @@ def goedel_encoder(wff):
     for sym in wff:
         sym = sym.strip()
         num += sym_dict[sym] + '0'
-
+        
+    num = num.strip('0')
     return(num)
 
+# generates variable symbols x0, x1, x3, ...
+def vargen(varcount):
+    var = 'x' + str(varcount)
+    return(var)
     
 
 # converts a valid number to a theorem
-
-def goedel_decoder(num):                 # takes in a string number like '1201309'
+def goedel_decoder(num):                 # takes in a string number like '12013'
     sym_list = list(sym_dict.items())    # create an array of (symbol, number) pairs
     wff = ''
-    num = num.split('0')
+    num = num.split('0')                 # ['12', '13'] 
+    varcount = 0
     
-    for term in num:
-        for pair in sym_list             # add the symbol
-            (sym, num) = pair
-            if num == term:
-                wff += sym + ' '
+    for symnum in num:
+        if int(symnum) > 20:             # checks if symbol is a variable
+            var = vargen(varcount)       # generates new variables based on the previous
+            wff += var
+            varcount += 1
+        else:
+            for pair in sym_list:
+                (sym, num) = pair
+                if num == symnum:
+                    wff += sym + ' '
         
     wff = wff.strip()
     wff += '.'
@@ -62,7 +70,6 @@ def goedel_decoder(num):                 # takes in a string number like '120130
 
 
 # main function -- calls the encoder/decoder according to the thm_obj type in 'object' file
-
 def goedel_main():
     obj = open('.../logia/object', 'r').readline()
     if obj.isdigit():
@@ -70,6 +77,7 @@ def goedel_main():
     else:
         val = goedel_encoder(obj)
     return(val)
+
 
 goedel_main()
 
