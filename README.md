@@ -17,3 +17,4 @@ Clone the repository and replace the ellipses with proper pathnames in `version_
 1. [Univalent Foundations](https://github.com/UniMath/UniMath), Vladimir Voevodsky, Benedikt Ahrens, Daniel Grayson and others.
 2. [Automatically Proving Mathematical Theorems with Evolutionary Algorithms and Proof Assistants](http://www.arxiv-sanity.com/1602.07455), Li-An Yang, Jui-Pin Liu, Chao-Hong Chen, Ying-ping Chen.
 3. [ProvingGround](https://github.com/siddhartha-gadgil/ProvingGround), Siddhartha Gadgil.
+4. [ML4PG](http://staff.computing.dundee.ac.uk/katya/ML4PG/), Jonathan Heras and Ekaterina Komendantskaya.
