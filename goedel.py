@@ -1,4 +1,4 @@
-# goedel decoder/encoder for LOGIA
+# goedel converter for types
 # converts a formula to its goedel number
 # converts a valid goedel number to a formula 
 
