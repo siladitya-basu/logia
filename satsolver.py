@@ -9,7 +9,7 @@ from sympy import symbols, satisfiable
 def satsolver_main():
     prop = open('.../logia/prop', 'r').readline()    # of the form -- Proposition name : forall p q r :Prop, expression.
     expr = prop.split(',')[-1].strip('.')            # expression without leading space or trailing .
-    varnames = split(':')[1].strip()[7:].replace(' ', ',')    # store the names of the variables as a string, split with ', '
+    varnames = split(':')[1].strip()[7:].replace(' ', ',')    # store the names of the variables as a string, split with ','
     varlist = list(symbols(varnames))                # create and store the symbols themselves in a list
 
     try:
@@ -22,6 +22,6 @@ def satsolver_main():
 
     return(models)
 
-  satsolver_main()
+satsolver_main()
   
-  # TO DO: multiple propositions
+# TO DO: multiple propositions
