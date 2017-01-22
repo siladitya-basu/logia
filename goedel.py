@@ -25,7 +25,7 @@ def goedel_encoder(wff):
             vnum = '2'
         elif var is 'nat':
             vnum = '3'
-        elif var not in sym_dict:
+        elif var not in sym_dict:    # won't work if variables are repeated
             var_list.append(var)
             vnum += '1'
             var_num.append(vnum)
@@ -41,6 +41,7 @@ def goedel_encoder(wff):
     return(num)
 
 # generates variable symbols x0, x1, x3, ...
+# TO DO: separate variable names by types
 def vargen(varcount):
     var = 'x' + str(varcount)
     return(var)
