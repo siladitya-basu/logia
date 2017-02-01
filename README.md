@@ -9,7 +9,7 @@ Get Python 3 and the `numpy` library. I use [Anaconda](https://www.continuum.io/
 
 Next, download [Coq](https://coq.inria.fr/download), a proof assistant for the Calculus of (Inductive) Constructions designed by Thiery Coquand.
 
-Clone the repository and replace the ellipses with proper pathnames in `version_logia.py` accordingly, and you're good to go!
+Clone the repository and replace the ellipses with proper pathnames in the python sourcecode accordingly, and you're good to go!
 
 
 ## Related Work and Further Reading
