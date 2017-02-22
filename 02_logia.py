@@ -15,9 +15,8 @@ from numpy.random import randint
 from os import system
 
 
-qed        = False
-theorem    = open('.../logia/theorem', 'r').readline()
-tactics    = open('.../logia/tactics_base', 'r').read().split('\n')
+theorem    = open('/home/wrick/Documents/logia/theorem', 'r').readline()
+tactics    = open('/home/wrick/Documents/logia/tactics_base', 'r').read().split('\n')
 T          = len(tactics) - 1    # the last tactic is a null tactic
 population = 10            # constant population size for every generation
 maxlength  = 5             # maximum proof length
@@ -55,10 +54,11 @@ def crossover(proof_tuple) :
 # define mutation -- as random as it can be, no dependencies, doesn't change proof length
 def mutagen(proof) :
     mutaprob = 13          # probability of mutation is 1 in 13, 0 means zero probability
-    
-    for i in proof :
-        if randint(mutaprob) == 0 :
-            proof[i] = randint(T)
+
+    if mutaprob != 0 :
+        for i in proof :
+            if randint(mutaprob) == 0 :    # probability of getting a zero is 1/mutaprob
+                proof[i] = randint(T)
 
     return(proof)
 
@@ -90,16 +90,17 @@ def proofgen(sequence) :
 # the main program
 def logia_main():
     generation = seedgen([])
-    
+    qed = False
+
     while qed == False :
         
         for i in range(population) :
             if qed == False :
-                Proof = open('.../logia/Proof.v', 'w')
+                Proof = open('/home/wrick/Documents/logia/proof.v', 'w')
                 Proof.write(theorem + proofgen(generation[i]))
                 Proof.close()
-                system('coqtop -compile .../logia/Proof')
-                qed = system('test -e .../logia/Proof.vo')
+                system('coqtop -compile /home/wrick/Documents/logia/proof')
+                qed = system('test -e /home/wrick/Documents/logia/proof.vo')
     
         generation = generationmap(generation)
 

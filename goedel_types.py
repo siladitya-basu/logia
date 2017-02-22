@@ -5,7 +5,7 @@
 
 # goedel numbering dictionary
 # default symbols are those of sympy's; Coq's are secondary; no sympy analog for Coq's '<->', 'forall' and 'exists' logical symbols
-sym_dict = {'forall' : '1', 'exists' : '2', '=' : '3', '~': '4', '>>': '5', '->' : '5', '&': '6', '/\\' : '6', '|' : '7', '\\/' : '7', '<->' : '8', ')' : '9', '(' : '10', 'Prop' : '11,' 'nat' : '12'}
+sym_dict = {'forall' : '1', 'exists' : '2', '=' : '3', '~': '4', '>>': '5', '->' : '5', '&': '6', '/\\' : '6', '|' : '7', '\\/' : '7', '<->' : '8', ')' : '9', '(' : '10', 'Prop' : '11', 'nat' : '12'}
 
 var_num = []
 var_list = []
@@ -16,7 +16,11 @@ var_list = []
 # symbols must be separated by spaces
 # propositional variables are 21, 211, 2111, ... natural number variables are 31, 311, 3111, ...
 def goedel_encoder(wff):
-    prenex = wff.split(',')[:-1].split(':')[1:].strip().split(' ')    # ['forall', 'x1', 'x2', ..., 'xn', 'nat', 'exists', 'p', 'q', 'Prop']
+    prenex = wff.split(',')[:-1]
+    prenex = ''.join(prenex).split(':')[1:]
+    for i in range(len(prenex)):
+        prenex[i] = prenex[i].strip()
+    prenex = ' '.join(prenex).split(' ')    # ['forall', 'x1', 'x2', ..., 'xn', 'nat', 'exists', 'p', 'q', 'Prop']
     expr = wff.split(',')[-1].strip('.').strip(' ').split[' ']    # ' expression.' is stripped and split
     num = ''
     
@@ -72,7 +76,7 @@ def goedel_decoder(num):                 # takes in a string number like '12013'
 
 # main function -- calls the encoder/decoder according to the thm_obj type in 'object' file
 def goedel_main():
-    obj = open('.../logia/object', 'r').readline()
+    obj = open('/home/wrick/Documents/logia/type', 'r').readline()
     if obj.isdigit():
         val = goedel_decoder(obj)
     else:
@@ -80,8 +84,10 @@ def goedel_main():
     return(val)
 
 
-goedel_main()
-
+val = goedel_main()
+V = open('/home/wrick/Documents/logia/val', 'w')
+V.write(val)
+V.close()
 
 # TO DO:
 # sync with satsolver

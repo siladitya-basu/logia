@@ -2,12 +2,12 @@
 # assigns a goedel numbering for tactics in the tactics_base 
 
 def goedel_proofs_main():
-    tactics = open('.../logia/tactics_base', 'r').read().split('\n')
-    code = [str(i) for i in range(1,len(tactics, 2))]
+    tactics = open('/home/wrick/Documents/logia/tactics_base', 'r').read().split('\n')
+    code = [str(i) for i in range(1,2*len(tactics), 2)]
     t2c = dict(zip(tactics, code))
     c2t = dict(zip(code, tactics))
 
-    prf = open('.../logia/proof', 'r').readline().strip()
+    prf = open('/home/wrick/Documents/logia/proof', 'r').readline().strip()
 
     if prf.isdigit():
         prf = prf.split('0')
@@ -29,6 +29,9 @@ def goedel_proofs_main():
                 pass
         ans.strip('0')
 
-    return(ans)
+    A = open('/home/wrick/Documents/logia/ans', 'w')
+    A.write(ans)
+    A.close()
+#   return(ans)
 
 goedel_proofs_main()

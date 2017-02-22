@@ -15,8 +15,8 @@ from os import system
 
 
 qed     = False
-theorem = open( '.../logia/theorem', 'r').readline()
-tactics = open('.../logia/tactics_base', 'r').read().split('\n')
+theorem = open( '/home/wrick/Documents/logia/theorem', 'r').readline()
+tactics = open('/home/wrick/Documents/logia/tactics_base', 'r').read().split('\n')
 T       = len(tactics) - 1                            # size of the tactics base
 
 
@@ -34,11 +34,11 @@ def proofgen() :
 
 def logia_main():
     while qed == False :
-        Proof = open('.../logia/Proof.v', 'w')
+        Proof = open('/home/wrick/Documents/logia/Proof.v', 'w')
         Proof.write(theorem + '\n' + proofgen())
         Proof.close()
-        system('coqtop -compile .../logia/Proof')
-        qed = system('test -e .../logia/Proof.vo')                  
+        system('coqtop -compile /home/wrick/Documents/logia/Proof')
+        qed = system('test -e /home/wrick/Documents/logia/Proof.vo')                  
     
 logia_main()
 
