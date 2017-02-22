@@ -96,12 +96,14 @@ def logia_main():
         
         for i in range(population) :
             if qed == False :
-                Proof = open('/home/wrick/Documents/logia/proof.v', 'w')
-                Proof.write(theorem + proofgen(generation[i]))
-                Proof.close()
-                system('coqtop -compile /home/wrick/Documents/logia/proof')
-                qed = system('test -e /home/wrick/Documents/logia/proof.vo')
-    
+                try:
+                    Proof = open('/home/wrick/Documents/logia/proof.v', 'w')
+                    Proof.write(theorem + proofgen(generation[i]))
+                    Proof.close()
+                    system('coqtop -compile /home/wrick/Documents/logia/proof')
+                    qed = system('test -e /home/wrick/Documents/logia/proof.vo')
+                except:
+                    pass
         generation = generationmap(generation)
 
 logia_main()
