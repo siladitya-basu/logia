@@ -15,10 +15,10 @@ from numpy.random import randint
 from os import system
 from glob import glob
 
-
+system('nano /home/wrick/Documents/logia/theorem')
 theorem    = open('/home/wrick/Documents/logia/theorem', 'r').readline()
-tactics    = open('/home/wrick/Documents/logia/tactics_base', 'r').read().split('\n')
-#tactics = ['assumption', 'destruct H as [a b]', '']
+#tactics    = open('/home/wrick/Documents/logia/tactics_base', 'r').read().split('\n')
+tactics = ['assumption', 'destruct H as [a b]', '']
 T          = len(tactics)        # the last tactic is a null tactic and randint has a closed-open domain
 population = 5                   # constant population size for every generation
 maxlength  = 2                   # maximum proof length
@@ -118,5 +118,6 @@ def logia_main():
 
 
 logia_main()
+system('nano /home/wrick/Documents/logia/proof.v')
 
 # ---EOF---
