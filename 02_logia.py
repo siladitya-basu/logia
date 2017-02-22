@@ -105,6 +105,9 @@ def logia_main():
                 except:
                     pass
         generation = generationmap(generation)
+        
+    return(qed)
+
 
 logia_main()
 
