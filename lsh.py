@@ -6,9 +6,10 @@ import readline
 
 def shell():
     system('clear')
-    errmsg = ['! But it\'s the semantics that matters.', '. I don\'t understand meatspeak.', '! Once a monkey stole a typewriter...', '. It\'s okay to be human!', '... I\'m sorry, I\'m afraid I cannot do that.', '! Entropy sure is high today!']
+    errmsg = ['! But it\'s the semantics that matters.', '. I don\'t understand meatspeak.', '! Once a monkey found a typewriter...', '. It\'s okay to be human!', '... I\'m sorry, I\'m afraid I cannot do that.', '! Entropy sure is high today!']
     #errmsg = [' ']
     print('Logia Shell 0.1. Welcome aboard!\n')
+    print('\N{GREEK CAPITAL LETTER OMEGA}mega \N{MATHEMATICAL BOLD ITALIC EPSILON SYMBOL}nsemble  2017\n')
     init_printing(use_unicode=True)
     log = []
 
@@ -27,7 +28,7 @@ def shell():
             
             if('prove' in usr):
                 print('\nLoading Universes...    ')
-                system('python3 /home/wrick/Documents/logia/02_logia.py')
+                system('python3 /home/wrick/Documents/logia/03_logia.py')
                 print('Done.')
             elif('com' in usr):
                 usr = input('Enter file name:  ')
