@@ -12,7 +12,7 @@ help          bring out this help
 prove         go to proofmode and start automated proving
 qed           quit lsh and return to terminal
 
-For mathematical commands, type '<command> <single_space> <expression_with_no_spaces>' and hit enter.
+For mathematical commands, type '<command> <single_space> <expression_with_no_space>' and hit enter.
 Here are the math commands:
 
 Command       Description
