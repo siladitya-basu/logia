@@ -31,7 +31,7 @@ try:
     proofmatch = 0                   # minimum similarity in proofs for crossover
     mutaprob   = 10                  # probability of mutation is 1/mutaprob, mutaprob=0 means no mutation
     maxgen     = 100                      # maximum no of generations
-    fit        = 0.35                     # minimum fitness for survival
+    fit        = 0.35                     # threshold fitness for survival
     proofmatch = 0                        # minimum similarity in proofs for crossover
 #    fitness_increment = (1-fit)/maxgen    # fitness increment per generation
     fitness_increment = 0
