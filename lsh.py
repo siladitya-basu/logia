@@ -5,6 +5,7 @@ from sympy import *
 import readline
 
 def shell():
+    path = '/home/wrick/Documents/logia/'
     system('clear')
     errmsg = ['! But it\'s the semantics that matters.', '. I don\'t understand meatspeak.', '! Once a monkey found a typewriter...', '. It\'s okay to be human!', '... I\'m sorry, I\'m afraid I cannot do that.', '! Entropy sure is high today!']
     #errmsg = [' ']
@@ -28,7 +29,7 @@ def shell():
             
             if('prove' in usr):
                 print('\nLoading Universes...    ')
-                system('python3 /home/wrick/Documents/logia/03_logia.py')
+                system('python3 ' + path + '03_logia.py')
                 print('Done.')
             elif('com' in usr):
                 usr = input('Enter file name:  ')
@@ -82,20 +83,20 @@ def shell():
                 
                 
             elif('proofnum' in usr):
-                system('python3 /home/wrick/Documents/logia/goedel_proofs.py')
+                system('python3 ' + path + 'goedel_proofs.py')
             elif('typenum' in usr):
-                system('python3 /home/wrick/Documents/logia/goedel_types.py')
+                system('python3 ' + path + 'goedel_types.py')
 
 
             elif('del' in usr):
-                system('python3 /home/wrick/Documents/logia/del.py')
+                system('python3 ' + path + 'del.py')
             elif('qed' in usr):
                 system('clear')
                 return(0)
             elif('cls' in usr):
                 system('clear')
             elif('help' in usr):
-                help = open('/home/wrick/Documents/logia/shell_help', 'r').read()
+                help = open(path + 'shell_help', 'r').read()
                 print('\n' + help)
             elif('find' in usr):
                 usr = '*' + expr + '*'
