@@ -6,10 +6,25 @@ Command       Description
 cd            change current directory, no args displays current directory name
 cls           clear the screen
 com           compile a .v file
-del           deletes all .v, .vo and .glob files
+del           delete all .v, .vo and .glob files
 edit          edit a .v file
-help          brings out this help
+help          bring out this help
 prove         go to proofmode and start automated proving
 qed           quit lsh and return to terminal
+
+For mathematical commands, type '<command> <single_space> <expression_with_no_spaces>' and hit enter.
+Here are the math commands:
+
+Command       Description
+dif           differentiate expression w.r.t x
+expand        expand series around x = 0, or rewrite polynomial in expanded form
+eval          evaluate a numeric expression or factor a polynomial
+fac           factor an integer or a polynomial
+int           indefinite integration of expression w.r.t x
+prime         print nth prime
+primes        print all primes upto the nth prime
+sat           find satisfiable values for a proposition, return 'False' if unsatisfiable
+solve         solve the expression equated to zero
+
 
 Logia 0.3, February 2017

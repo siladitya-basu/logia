@@ -39,10 +39,7 @@ def shell():
                 
                 
             elif('eval' in usr):
-                if('x' in usr or 'y' in usr or 'z' in usr or 'w' in usr):
-                    ans = factor(exps)
-                else:
-                    ans = exps.evalf()
+                ans = exps.evalf()
                 print(ans)
             elif('dif' in usr):
                 ans = diff(exps, x)
@@ -75,9 +72,13 @@ def shell():
                 else:
                     print(sieve._list[n-1], end=' ', flush=True)
                 print()
-            elif('factor' in usr):
-                n = int(usr.split(' ')[-1].strip())
-                print(factorint(n))
+            elif('fac' in usr):
+                if('x' in usr or 'y' in usr or 'z' in usr or 'w' in usr):
+                    ans = factor(exps)
+                else:
+                    n = int(usr.split(' ')[-1].strip())
+                    ans = factorint(n)
+                print(ans)
                 
                 
             elif('proofnum' in usr):
