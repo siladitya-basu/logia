@@ -5,14 +5,14 @@ Logia is my attempt to create an automated theorem prover by combining the widel
 
 ## Getting Started
 
-Get Python 3 and the NumPy and SymPy libraries. I use [Anaconda](https://www.continuum.io/downloads) by Continuum Mechanics.
+Get Python 3 and the [NumPy](https://en.wikipedia.org/wiki/NumPy) and [SymPy](https://en.wikipedia.org/wiki/SymPy) libraries. I use [Anaconda](https://www.continuum.io/downloads) by Continuum Mechanics, which contains these libraries and many others.
 
-Next, download [Coq](https://coq.inria.fr/download), a proof assistant for the Calculus of (Inductive) Constructions which is a formal language for mathematics invented by Thiery Coquand.
+Next, download [Coq](https://coq.inria.fr/download), a proof assistant for the Calculus of (Inductive) Constructions, which is a formal language for mathematics invented by Thiery Coquand.
 
 Clone the repository and change the `path` variable in the python sourcecodes accordingly, and you're good to go!
 
 
-## How to
+## How To
 
 Logia comes with a shell (lsh) that can be run by executing either `lsh.py` or `l.sh`. Built into lsh are various commands to evaluate mathematical expressions, as well as rudimentary file management commands. Type `help` into lsh to get a list of commands. Almost all math commands require SymPy, so it's advisable to get it first. In the future I'd like to have a better interface and more out-of-the-box support for doing mathematics (think graphs, numerical solvers, better editors, etc.).
 
@@ -20,7 +20,7 @@ The Logia 'kernel', which is the theorem prover, can be launched from lsh throug
 
 lsh also has basic file management capabilities. To find files, type `find <string>`; an empty string returns all files in the present working directory. To change directory, type `cd`, hit enter, type the path. To edit or compile a .v file, type `edit` or `com`, press enter, and type in the filename. The coq compiler tries to compile the .v file and produce a .vo file. To remove all temporary .v and .vo files in the present directory, type `del`. Doing this is necessary before launching the prover everytime, as this flushes temporary files out. Any time the screen gets messy doing math, use `cls`. To quit the shell, type `qed`.
 
-**Disclaimer.** Logia is very much work-in-progress and, being programmed by an amateur, will invariably have minor issues. However, major problems are a huge pain, so if you discover any in Logia, or have suggestions about the program, or just want to talk about my project, mail me at wrickbasu@gmail.com.
+**Disclaimer.**  Logia is very much work-in-progress and, being programmed by an amateur, will invariably have minor issues. However, major problems are a huge pain, so if you discover any in Logia, or have suggestions about the program, or just want to talk about my project, mail me at wrickbasu@gmail.com.
 
 
 ## Related Work and Further Reading
