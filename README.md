@@ -5,11 +5,11 @@ Logia is my attempt to create an automated theorem prover by combining the widel
 
 ## Getting Started
 
-Get Python 3 and the `numpy` library. I use [Anaconda](https://www.continuum.io/downloads) by Continuum Mechanics.
+Get Python 3 and the `numpy` and `sympy` libraries. I use [Anaconda](https://www.continuum.io/downloads) by Continuum Mechanics.
 
-Next, download [Coq](https://coq.inria.fr/download), a proof assistant for the Calculus of (Inductive) Constructions designed by Thiery Coquand.
+Next, download [Coq](https://coq.inria.fr/download), a proof assistant for the Calculus of (Inductive) Constructions which a formal language for mathematics invented by Thiery Coquand.
 
-Clone the repository and replace the ellipses with proper pathnames in the python sourcecode accordingly, and you're good to go!
+Clone the repository and change the pathnames in the python sourcecode accordingly, and you're good to go!
 
 
 ## Related Work and Further Reading
