@@ -1,0 +1,15 @@
+Hello! This is a command shell for the Logia theorem prover.
+If you are new here, check out the Readme or head to github.com/wrickbasu/logia.
+Here's a list of useful commands:
+
+Command       Description
+cd            change current directory, no args displays current directory name
+cls           clear the screen
+com           compile a .v file
+del           deletes all .v, .vo and .glob files
+edit          edit a .v file
+help          brings out this help
+prove         go to proofmode and start automated proving
+qed           quit lsh and return to terminal
+
+Logia 0.3, February 2017
