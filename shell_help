@@ -8,6 +8,7 @@ cls           clear the screen
 com           compile a .v file
 del           delete all .v, .vo and .glob files
 edit          edit a .v file
+find          search for a string in the current directory, empty string returns all files
 help          bring out this help
 prove         go to proofmode and start automated proving
 qed           quit lsh and return to terminal
