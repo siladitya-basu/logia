@@ -25,7 +25,7 @@ int           indefinite integration of expression w.r.t x
 prime         print nth prime
 primes        print all primes upto the nth prime
 sat           find satisfiable values for a proposition, return 'False' if unsatisfiable
-solve         solve the expression equated to zero
+solve         solve the expression, equated to zero, for x
 
 
 Logia 0.3, February 2017
