@@ -20,25 +20,30 @@ from re import search
 
 abort = False
 seterr(divide='ignore', invalid='ignore')    # ignore divide-by-zero error
+
+# initializations
 path = '/home/wrick/Documents/logia/'
+population = 10                  # constant population size for every generation
+maxlength  = 2                   # maximum proof length
+proofmatch = 0                   # minimum similarity in proofs for crossover
+mutaprob   = 10                  # probability of mutation is 1/mutaprob, mutaprob = 0 means no mutation
+maxgen     = 100                 # maximum no of generations
+fit        = 0.35                # threshold fitness for survival
+proofmatch = 0                   # minimum similarity in proofs for crossover
+#    fitness_increment = (1-fit)/maxgen    # fitness increment per generation
+fitness_increment = 0
+
 try:
     system('nano ' + path + 'theorem.v')
     theorem = open(path + 'theorem.v', 'r').readline()
     tactics = open(path + 'tactics_base', 'r').read().split('\n')
 #    tactics = ['assumption', 'destruct H as [a b]', '']
     T          = len(tactics)        # the last tactic is a null tactic and randint has a closed-open domain
-    population = 10                  # constant population size for every generation
-    maxlength  = 2                   # maximum proof length
-    proofmatch = 0                   # minimum similarity in proofs for crossover
-    mutaprob   = 10                  # probability of mutation is 1/mutaprob, mutaprob=0 means no mutation
-    maxgen     = 100                      # maximum no of generations
-    fit        = 0.35                     # threshold fitness for survival
-    proofmatch = 0                        # minimum similarity in proofs for crossover
-#    fitness_increment = (1-fit)/maxgen    # fitness increment per generation
-    fitness_increment = 0
+    
 except FileNotFoundError:
     print('Does not exist. Abort.')
     abort = True
+    
 
 # create the seeds -- adds new proofs to the generation
 def seedgen(generation):
@@ -55,11 +60,11 @@ def seedgen(generation):
 # normalized inner product between proofs
 def inprod(proof_tuple):
     (proof1, proof2) = proof_tuple
-    if(len(proof1)>len(proof2)):
+    if(len(proof1) > len(proof2)):
         temp = proof1
         proof1 = proof2
         proof2 = temp
-    while(len(proof1)<len(proof2)):
+    while(len(proof1) < len(proof2)):
         proof1.append(0)
     try:
         innerproduct = dot(proof1, proof2)/sqrt((dot(proof1, proof1))*(dot(proof2, proof2)))
@@ -142,13 +147,13 @@ def logia_main():
         newgeneration = []
         for i in range(population):
             try:
-                Proof = open('/home/wrick/Documents/logia/proof.v', 'w')
+                Proof = open(path + 'proof.v', 'w')
                 sequence = generation[i]
                 proof = proofgen(sequence)
                 Proof.write(theorem + proof)
                 Proof.close()
-                system('coqtop -compile /home/wrick/Documents/logia/proof > errors')
-                if(len(glob('/home/wrick/Documents/logia/proof.vo'))!=0):
+                system('coqtop -compile ' + 'proof > errors')
+                if(len(glob(path + 'proof.vo'))!=0):
                     return()
                 else:
                     fitness = fitnesscheck(proof)
@@ -164,7 +169,7 @@ def logia_main():
 
 logia_main()
 if(not abort):
-    system('nano /home/wrick/Documents/logia/proof.v')
+    system('nano ' + path + 'proof.v')
 
     
 # ---EOF---
