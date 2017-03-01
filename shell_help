@@ -19,7 +19,7 @@ Here are the math commands:
 Command       Description
 dif           differentiate expression w.r.t x
 expand        expand series around x = 0, or rewrite polynomial in expanded form
-eval          evaluate a numeric expression or factor a polynomial
+eval          evaluate a numeric expression
 fac           factor an integer or a polynomial
 int           indefinite integration of expression w.r.t x
 prime         print nth prime
