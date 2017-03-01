@@ -26,19 +26,7 @@ def shell():
                 pass
 
             
-            if('prove' in usr):
-                print('\nLoading Universes...    ')
-                system('python3 ' + path + '03_logia.py')
-                print('Done.')
-            elif('com' in usr):
-                usr = input('Enter file name:  ')
-                system('coqtop -compile $PWD/'+usr)
-            elif('edit' in usr):
-                usr = input('Enter file name:  ')
-                system('nano ' + '$PWD/' + usr.strip() + '.v')
-                
-                
-            elif('eval' in usr):
+            if('eval' in usr):
                 ans = exps.evalf()
                 print(ans)
             elif('dif' in usr):
@@ -80,11 +68,31 @@ def shell():
                     ans = factorint(n)
                 print(ans)
                 
+            elif('prove' in usr):
+                print('\nLoading Universes...    ')
+                system('python3 ' + path + '03_logia.py')
+                print('Done.')
+            elif('com' in usr):
+                usr = input('Enter file name:  ')
+                if(len(usr.split('edit')[-1].strip()) > 0):
+                    system('coqtop -compile $PWD/' + usr)
+                else:
+                    system('coqtop -compile ' + path + 'theorem.v')
+            elif('edit' in usr):
+                usr = input('Enter file name:  ')
+                if(len(usr.split('edit')[-1].strip()) > 0):
+                    system('nano ' + '$PWD/' + usr.strip() + '.v')
+                else:
+                    system('nano ' + path + 'theorem.v')
+                            
                 
             elif('proofnum' in usr):
                 system('python3 ' + path + 'goedel_proofs.py')
             elif('typenum' in usr):
                 system('python3 ' + path + 'goedel_types.py')
+            elif('order' in usr):
+                system('python3 ' + path + 'order.py')
+                print(open(path + 'ordering', 'r').read())
 
 
             elif('del' in usr):
