@@ -102,13 +102,13 @@ def generationmap(generation):
     global population
     newgeneration = []
     for i in range(population):
-        generation[i] = mutagen(generation[i])
-    for i in range(population):
         proof_tuple = (generation[randint(population)], generation[randint(population)])
         while inprod(proof_tuple) < proofmatch:
             proof_tuple = (generation[randint(population)], generation[randint(population)])
         newproof = crossover(proof_tuple)
         newgeneration.append(newproof)
+    for i in range(population):
+        newgeneration[i] = mutagen(newgeneration[i])
     return(newgeneration)
 
 
