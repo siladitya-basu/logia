@@ -103,7 +103,7 @@ def generationmap(generation):
     newgeneration = []
     for i in range(population):
         proof_tuple = (generation[randint(population)], generation[randint(population)])
-        while inprod(proof_tuple) < proofmatch:
+        while inprod(proof_tuple) >= proofmatch:
             proof_tuple = (generation[randint(population)], generation[randint(population)])
         newproof = crossover(proof_tuple)
         newgeneration.append(newproof)
