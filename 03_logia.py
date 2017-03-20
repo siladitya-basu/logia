@@ -152,7 +152,7 @@ def logia_main():
                 proof = proofgen(sequence)
                 Proof.write(theorem + proof)
                 Proof.close()
-                system('coqtop -compile ' + 'proof > errors')
+                system('coqtop -compile ' + path + 'proof > errors')
                 if(len(glob(path + 'proof.vo'))!=0):
                     return()
                 else:
