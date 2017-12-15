@@ -14,7 +14,7 @@ Clone the repository and change the `path` variable in the python sourcecodes ac
 
 ## How To
 
-Logia comes with a shell (lsh) that can be run by executing either `lsh.py` or `l.sh`. Built into lsh are various commands to evaluate mathematical expressions, as well as rudimentary file management commands. Type `help` into lsh to get a list of commands. Almost all math commands require SymPy, so it's advisable to get it first. In the future I'd like to have a better interface and more out-of-the-box support for doing mathematics (think graphs, numerical solvers, better editors, etc.).
+Logia comes with a shell (lsh) that can be run by executing either `lsh.py` or `l.sh`. Built into lsh are various commands to evaluate mathematical expressions, as well as rudimentary file management commands. Type `help` into lsh to get a list of commands. Almost all math commands require SymPy, so it's advisable to get it first. In the future I'd like to have a better interface and more out-of-the-box support for doing mathematics (graphs, numerical solvers, better editors &c).
 
 The Logia 'kernel', which is the theorem prover, can be launched from lsh through the `prove` command. NumPy is required for this to run. `prove` calls the GNU nano editor on a `theorem.v` file, which can be edited and saved. Write the theorem to be proved here. Saving `theorem.v` automatically launches the prover to action, which tries to find proofs for the theorem and halts only when a proof is found, threshold fitness goes through the roof, or hell freezes over.
 
