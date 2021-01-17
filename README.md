@@ -1,6 +1,6 @@
 # LOGIA
 
-Logia is my attempt to create an automated theorem prover by combining the widely separate (but not really that different :) fields of proof theory, evolutionary algorithms and computer programming. In its current form, it uses evolutionary algorithms to generate mathematical proofs which are then verified by Coq, a proof assistant for a variant of higher order type theory that also manages to avoid the halting problem.
+Logia is my attempt to create an automated theorem prover by combining the widely separate fields of proof theory, evolutionary algorithms and computer programming. In its current form, it uses evolutionary algorithms to generate mathematical proofs which are then verified by Coq, a proof assistant for a variant of higher order type theory that also manages to avoid the halting problem.
 
 
 ## Getting Started
